@@ -1,12 +1,3 @@
-# Python
-__pycache__/
-*.py[cod]
-.pytest_cache/
-.ipynb_checkpoints/
-.venv/
-venv/
-.env
-
 # Original datasets and derived outputs
 /data/raw/*
 !/data/raw/.gitkeep
@@ -16,7 +7,22 @@ venv/
 !/data/analytical/.gitkeep
 *.parquet
 
-# System and IDE
+# Python and tooling
+.venv/
+venv/
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.ipynb_checkpoints/
+*.egg-info/
+dist/
+build/
+
+# Local environment and OS
+.env
+.env.*
+!.env.example
 .DS_Store
-.vscode/
-.idea/
+Thumbs.db

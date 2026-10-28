@@ -1,0 +1,5 @@
+[project]
+name = "turno-payment-experiment"
+version = "0.1.0"
+description = "Reproducible analysis of the Turno payment authorization experiment"
+requires-python = ">=3.12,<3.13"
