@@ -2,7 +2,7 @@
 
 ## Notebooks — complete source and saved outputs
 
-All eight notebooks are version-controlled, including their Python source cells and saved outputs. Open them directly in GitHub or run them locally with the unchanged source CSVs in `data/raw/`:
+All nine notebooks are version-controlled, including their Python source cells and saved outputs. Open them directly in GitHub or run them locally with the unchanged source CSVs in `data/raw/`:
 
 - [A — Data structure](notebooks/00_data_foundation/00_A_structure.ipynb)
 - [B — Conceptual integrity](notebooks/00_data_foundation/01_B_conceptual_integrity.ipynb)
@@ -12,6 +12,7 @@ All eight notebooks are version-controlled, including their Python source cells 
 - [Sprint 1 — Experiment impact](notebooks/01_experiment/experiment_impact.ipynb)
 - [EDA 1 — Payment reliability](notebooks/02_eda1/payment_reliability_deep_dive.ipynb)
 - [Final inferential validation](notebooks/02_eda1/inferential_validation.ipynb)
+- [Final decision-oriented checks](notebooks/02_eda1/final_decision_checks.ipynb)
 
 Supporting Python modules are in [`src/`](src/), synthetic tests and independent audits in [`tests/`](tests/), and technical and executive reports in [`reports/`](reports/). The original CSVs are intentionally not tracked. The source-level payment and causal-identification limitations remain applicable.
 
@@ -134,3 +135,11 @@ With unchanged original source CSVs in `data/raw/` and the local Python 3.13 env
 - `src/inferential_validation.py`, `tests/test_inferential_validation.py`: focused reusable estimators and 8 new synthetic tests (96/96 tests in the full project suite).
 
 **Validation:** The final inferential notebook passed a clean Python 3.13.5 Jupyter execution. The separate EDA 1 payment-reliability notebook's V7 issue and the historical A/B V7 caveats remain open. No original CSVs or local virtual environments are committed.
+
+## Final decision-oriented checks (approved for integration)
+
+- `notebooks/02_eda1/final_decision_checks.ipynb`: recorded post-exposure M2 chronology, second completion within 30 days and its pre-booked share, plus a project-weighted D1 baseline-activity sensitivity. Six code cells ran in a clean Jupyter kernel with saved outputs.
+- `reports/final_decision_checks.md`: concise English technical interpretation and decision limitations.
+- `src/final_decision_checks.py`, `tests/test_final_decision_checks.py`: deterministic helpers and 10 targeted synthetic checks. The full suite passed **106/106** tests in Python 3.13.5 before integration.
+
+Historical A/B and EDA 1 payment-reliability Jupyter V7 exceptions remain open. No raw CSV files, Python caches or local virtual environments are versioned. No final Ship/Kill/Modified Ship recommendation is made.
