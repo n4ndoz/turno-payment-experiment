@@ -1,6 +1,6 @@
 # Turno — Payment Authorization Experiment
 
-**Status:** EDA 0 / **Checkpoint A (A01–A08)** committed on `analysis/eda0-data-foundation`; **Checkpoint B (B09–B17)** committed to the Foundation branch with Fernando's approval for technical review; **not yet signed off as analytically complete**. Checkpoints C–E have not been reimplemented. **V7 remains open for A and B.** No experiment-effect inference, KPI definition or Ship/Kill recommendation is included.
+**Status:** EDA 0 / **Checkpoint A (A01–A08)** committed on `analysis/eda0-data-foundation`; **Checkpoint B (B09–B17)** committed to the Foundation branch with Fernando's approval for technical review; **not yet signed off as analytically complete**. Checkpoints C and E are committed on the Foundation branch for review, including C21/C24 and C22 traceability corrections; Checkpoint D is not authorized. **V7 remains open for A and B.** No experiment-effect inference, KPI definition or Ship/Kill recommendation is included.
 
 ## Python version and local reproducibility
 
@@ -35,7 +35,7 @@ python -m jupyterlab
 
 If PowerShell activation is blocked, replace `python` with `.\.venv\Scripts\python.exe` in the commands above; do not bypass your machine's execution policy merely for this project. On Linux/macOS, use `.venv/bin/python` directly if desired.
 
-Open `notebooks/00_data_foundation/00_A_structure.ipynb` and `01_B_conceptual_integrity.ipynb`, choose the `.venv` Python 3.13 kernel, then **Kernel → Restart Kernel and Run All Cells** for each. It also works with notebook working directory set to the repository root or the notebook folder, as long as `data/raw/` exists.
+Open `notebooks/00_data_foundation/00_A_structure.ipynb`, `01_B_conceptual_integrity.ipynb`, `02_C_temporal_integrity.ipynb` and `04_E_population_coverage.ipynb`, choose the `.venv` Python 3.13 kernel, and **Restart Kernel and Run All Cells** for each notebook. C then E must be reviewed in this order. It also works with notebook working directory set to the repository root or the notebook folder, as long as `data/raw/` exists.
 
 **Check the results:** compare the source SHA-256 checksums displayed in A01 with those in `reports/eda/eda0_checkpoint_A.md`, run `python -m pytest -q`, and verify **all notebook cells execute in order without errors**, with saved outputs matching freshly calculated results.
 
@@ -58,3 +58,15 @@ The dependencies are declared in `pyproject.toml`; use the local venv so they do
 - `reports/eda/eda0_coverage.md`: question coverage and acceptance status.
 
 **Governance:** Data corrections, new business metrics, eligible populations, interpretations and decisions require separate approval. No source file is edited or excluded. Results about `payment_logs` refer to **attempts**, not completed project payment outcomes. **Commit A was explicitly authorized on the review branch; no pull request or merge is authorized yet.**
+
+## Checkpoints C + E (committed for technical review)
+
+- `notebooks/00_data_foundation/02_C_temporal_integrity.ipynb`: C18–C24, actual event chronology, preliminary D0/D1/D7/D14/D30 horizon bounds and September incident observability.
+- `notebooks/00_data_foundation/04_E_population_coverage.ipynb`: E35–E43, registered hosts including zero experiment completions, recorded exposure opportunity and technical answerability matrix; interactive Plotly descriptions.
+- `src/foundation_ce.py`, `tests/test_foundation_ce.py`: small reusable UTC, elapsed-horizon and zero-host helpers with synthetic checks.
+- `tests/check_ce_source_reconciliations.py`: independent CSV-stdlib verification of critical horizon/population numbers. Run `python tests/check_ce_source_reconciliations.py` after placing originals in `data/raw/`.
+- `reports/eda/eda0_checkpoint_C.md`, `eda0_checkpoint_E.md`: independent checkpoint reports; `eda0_anomalies_CE.md` and `eda0_coverage_combined.md` consolidate technical status without deciding business KPIs.
+
+**Validation:** 36 synthetic tests passed across A/B/C/E. Revised Checkpoint C (10 code cells) and E (10 code cells) successfully executed with `nbclient` from a **clean Python 3.13.5 Jupyter kernel** in the authoring environment; outputs were saved. The user-local Python 3.13 `.venv` remains to be tested; earlier A/B V7 kernel errors remain unresolved.
+
+**Git:** Checkpoints C and E were expressly authorized for commit on the Foundation branch. Neither a pull request nor a merge is authorized. Checkpoint D and experimental evaluation remain out of scope.
