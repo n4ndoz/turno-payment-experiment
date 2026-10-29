@@ -1,12 +1,27 @@
 # Turno — Payment Authorization Experiment
 
+## Notebooks — complete source and saved outputs
+
+All eight notebooks are version-controlled, including their Python source cells and saved outputs. Open them directly in GitHub or run them locally with the unchanged source CSVs in `data/raw/`:
+
+- [A — Data structure](notebooks/00_data_foundation/00_A_structure.ipynb)
+- [B — Conceptual integrity](notebooks/00_data_foundation/01_B_conceptual_integrity.ipynb)
+- [C — Temporal integrity](notebooks/00_data_foundation/02_C_temporal_integrity.ipynb)
+- [D — Payment journeys](notebooks/00_data_foundation/03_D_payment_journeys.ipynb)
+- [E — Population coverage](notebooks/00_data_foundation/04_E_population_coverage.ipynb)
+- [Sprint 1 — Experiment impact](notebooks/01_experiment/experiment_impact.ipynb)
+- [EDA 1 — Payment reliability](notebooks/02_eda1/payment_reliability_deep_dive.ipynb)
+- [Final inferential validation](notebooks/02_eda1/inferential_validation.ipynb)
+
+Supporting Python modules are in [`src/`](src/), synthetic tests and independent audits in [`tests/`](tests/), and technical and executive reports in [`reports/`](reports/). The original CSVs are intentionally not tracked. The source-level payment and causal-identification limitations remain applicable.
+
 **Status:** EDA 0 / **Checkpoint A (A01–A08)** committed on `analysis/eda0-data-foundation`; **Checkpoint B (B09–B17)** committed to the Foundation branch with Fernando's approval for technical review; **not yet signed off as analytically complete**. Checkpoints C and E are committed on the Foundation branch for review, including C21/C24 and C22 traceability corrections; Checkpoint D (D25–D34) was committed on the Foundation branch after explicit approval; technical review and methodological decisions remain separate. **V7 remains open for A and B.** Sprint 1 experimental contrasts are committed on the Foundation branch for review; no final KPI approval or Ship/Kill recommendation is included.
 
 ## Python version and local reproducibility
 
 The original Python **3.12.10** target was expressly changed to **Python 3.13**. The execution environment used here is **Python 3.13.5**. Use a Python 3.13 interpreter on your machine; the Python 3.13 virtual environment is **local to each machine** and is never committed.
 
-1. Clone the repository and check out the Checkpoint A review branch: `git clone https://github.com/n4ndoz/turno-payment-experiment.git`, `cd turno-payment-experiment`, then `git checkout analysis/eda0-data-foundation`.
+1. Clone the repository on its default `main` branch: `git clone https://github.com/n4ndoz/turno-payment-experiment.git`, then `cd turno-payment-experiment`.
 2. Put the three *unchanged* CSV files in `data/raw/`, keeping their filenames:
    `experiment_exposures.csv`, `assignments.csv`, `payment_logs.csv`.
 3. From the **repository root**, create the venv and install the project:
@@ -57,7 +72,7 @@ The dependencies are declared in `pyproject.toml`; use the local venv so they do
 - `reports/eda/eda0_anomalies_A.md`: anomaly and limitation inventory.
 - `reports/eda/eda0_coverage.md`: question coverage and acceptance status.
 
-**Governance:** Data corrections, new business metrics, eligible populations, interpretations and decisions require separate approval. No source file is edited or excluded. Results about `payment_logs` refer to **attempts**, not completed project payment outcomes. **Commit A was explicitly authorized on the review branch; no pull request or merge is authorized yet.**
+**Governance:** Data corrections, new business metrics, eligible populations, interpretations and decisions require separate approval. No source file is edited or excluded. Results about `payment_logs` refer to **attempts**, not completed project payment outcomes. **The initial Checkpoint A authorization applied only to its review branch; later, integration of the full reviewed project into `main` was expressly authorized.**
 
 ## Checkpoints C + E (committed for technical review)
 
@@ -69,7 +84,7 @@ The dependencies are declared in `pyproject.toml`; use the local venv so they do
 
 **Validation:** 36 synthetic tests passed across A/B/C/E. Revised Checkpoint C (10 code cells) and E (10 code cells) successfully executed with `nbclient` from a **clean Python 3.13.5 Jupyter kernel** in the authoring environment; outputs were saved. The user-local Python 3.13 `.venv` remains to be tested; earlier A/B V7 kernel errors remain unresolved.
 
-**Git:** Checkpoints C, D and E were expressly authorized for commit on the Foundation branch. Neither a pull request nor a merge is authorized. Sprint 1 experimental evaluation was explicitly authorized and committed to the Foundation branch; no PR or merge is authorized.
+**Git:** Checkpoints C, D and E and Sprint 1 were explicitly approved and versioned. Full project integration into `main` was subsequently authorized; historical review-stage limitations remain documented.
 
 
 ## Checkpoint D (committed for technical review)
@@ -80,7 +95,7 @@ The dependencies are declared in `pyproject.toml`; use the local venv so they do
 - `tests/check_d_source_reconciliations.py`: independent source-stream verification using standard-library `csv.DictReader` (no Pandas or shared helpers). Run `python tests/check_d_source_reconciliations.py`.
 - `reports/eda/eda0_checkpoint_D.md`, `eda0_anomalies_D.md`: complete English technical evidence and caveats; `eda0_coverage_combined.md` is updated for all 43 questions.
 
-**Validation:** 52 synthetic pytest cases passed across A/B/C/E/D; 11/11 D notebook code cells passed in a fresh Python 3.13.5 Jupyter kernel via `nbclient` after vectorizing performance bottlenecks, with outputs saved. Independent D source audit passed. Historical A/B V7 exceptions and local-user `.venv` verification remain open. Commit D was explicitly authorized; no PR, merge or experimental analysis is authorized.
+**Validation:** 52 synthetic pytest cases passed across A/B/C/E/D; 11/11 D notebook code cells passed in a fresh Python 3.13.5 Jupyter kernel via `nbclient` after vectorizing performance bottlenecks, with outputs saved. Independent D source audit passed. Historical A/B V7 exceptions and local-user `.venv` verification remain open. Commit D and subsequent experimental analysis were separately authorized; historical validation and local-environment caveats remain open.
 
 
 ## Sprint 1 — Experimental Impact (committed for technical review)
@@ -93,7 +108,7 @@ The dependencies are declared in `pyproject.toml`; use the local venv so they do
 
 **Additional dependencies:** `statsmodels`, `scipy`, and `matplotlib` are declared in `pyproject.toml` for inference and the two plots. The main inference is on **registered hosts**, not proven full-population ITT; captured-at timestamps are not ledger settlement verification. The all-host D14 window is inside the conservatively documented observation horizon, but the completeness of source logs cannot be proven independently. D30 excludes final-day uncertain windows.
 
-**Sprint 1 validation:** 65/65 project pytest checks passed, independent CSV audit passed, and the Sprint notebook executed 11/11 code cells in a clean Jupyter Python 3.13.5 kernel with saved outputs. Historical A/B V7 issues remain separate; local `.venv` validation is still required. **Sprint 1 was committed by explicit authorization; no PR or merge has been performed.**
+**Sprint 1 validation:** 65/65 project pytest checks passed, independent CSV audit passed, and the Sprint notebook executed 11/11 code cells in a clean Jupyter Python 3.13.5 kernel with saved outputs. Historical A/B V7 issues remain separate; local `.venv` validation is still required. **Sprint 1 was committed with explicit authorization; its later integration into `main` was also authorized.**
 
 
 ## EDA 1 — Payment Reliability & Experiment Impact (committed for technical review)
@@ -110,4 +125,12 @@ The dependencies are declared in `pyproject.toml`; use the local venv so they do
 
 With unchanged original source CSVs in `data/raw/` and the local Python 3.13 environment installed, run `python -m pytest -q`, `python tests/check_eda1_source_reconciliations.py`, and **Restart Kernel and Run All Cells** in the EDA 1 notebook.
 
-**Governance:** EDA 1 code was committed to `analysis/eda1-experiment-impact` after explicit authorization. No PR or merge has been performed. No causal within-method inference, final capture definition, financial-settlement claim or product recommendation is made.
+**Governance:** EDA 1 was committed after explicit authorization. Integration of the reviewed project into `main` was separately authorized. No causal within-method inference, final capture definition, financial-settlement claim or product recommendation is made.
+
+## Final inferential validation (approved for publication)
+
+- `notebooks/02_eda1/inferential_validation.ipynb`: baseline-vs-experiment D1, HC3-adjusted host metrics, host-label permutation tests, Holm multiplicity, and sensitivity of M1 to high-activity hosts; 6/6 Jupyter code cells executed with outputs saved.
+- `reports/inferential_validation.md`: final concise English decision-evidence report; no Ship/Kill recommendation.
+- `src/inferential_validation.py`, `tests/test_inferential_validation.py`: focused reusable estimators and 8 new synthetic tests (96/96 tests in the full project suite).
+
+**Validation:** The final inferential notebook passed a clean Python 3.13.5 Jupyter execution. The separate EDA 1 payment-reliability notebook's V7 issue and the historical A/B V7 caveats remain open. No original CSVs or local virtual environments are committed.
