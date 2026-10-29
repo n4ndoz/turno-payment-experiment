@@ -1,39 +1,56 @@
 # Turno — Payment Authorization Experiment
 
-Reproducible analytical project for the Turno payment authorization experiment take-home assignment.
+**Status:** EDA 0 / **Checkpoint A (A01–A08)** committed to `analysis/eda0-data-foundation` for technical review; **V7 remains open**. Checkpoints B–E have **not** been reimplemented or approved under the new technical contract. No experiment-effect inference, KPI definition or Ship/Kill recommendation is included.
 
-## Project status
+## Python version and local reproducibility
 
-Initial scaffolding only. No datasets have been read, transformed, or analyzed; no metrics have been implemented.
+The original Python **3.12.10** target was expressly changed to **Python 3.13**. The execution environment used here is **Python 3.13.5**. Use a Python 3.13 interpreter on your machine; the Python 3.13 virtual environment is **local to each machine** and is never committed.
 
-## Environment
+1. Clone the repository and check out the Checkpoint A review branch: `git clone https://github.com/n4ndoz/turno-payment-experiment.git`, `cd turno-payment-experiment`, then `git checkout analysis/eda0-data-foundation`.
+2. Put the three *unchanged* CSV files in `data/raw/`, keeping their filenames:
+   `experiment_exposures.csv`, `assignments.csv`, `payment_logs.csv`.
+3. From the **repository root**, create the venv and install the project:
 
-- Python 3.12.10
-- Dependencies will be declared when their use is approved and implemented.
+**Linux / macOS**
 
-## Local data
+```bash
+python3.13 -m venv .venv
+source .venv/bin/activate
+python -m pip install --upgrade pip
+python -m pip install -e ".[dev]"
+python -m pytest -q
+python -m jupyterlab
+```
 
-Place the three original, unmodified CSV files under `data/raw/`:
+**Windows PowerShell**
 
-- `experiment_exposures.csv`
-- `assignments.csv`
-- `payment_logs.csv`
+```powershell
+py -3.13 -m venv .venv
+.\.venv\Scripts\Activate.ps1
+python -m pip install --upgrade pip
+python -m pip install -e ".[dev]"
+python -m pytest -q
+python -m jupyterlab
+```
 
-The source CSVs are not committed to Git. Neither are generated Parquet files. Preserve the original filenames and contents.
+If PowerShell activation is blocked, replace `python` with `.\.venv\Scripts\python.exe` in the commands above; do not bypass your machine's execution policy merely for this project. On Linux/macOS, use `.venv/bin/python` directly if desired.
 
-## Directory layout
+Open `notebooks/00_data_foundation/00_A_structure.ipynb`, choose the `.venv` Python 3.13 kernel, then **Kernel → Restart Kernel and Run All Cells**. It also works with notebook working directory set to the repository root or the notebook folder, as long as `data/raw/` exists.
 
-- `data/raw/`: original CSVs (not versioned)
-- `data/processed/`: reusable treated data, when needed
-- `data/analytical/`: reusable analytical datasets, when needed
-- `notebooks/`: exploratory notebooks, organized by stage
-- `src/`: reusable Python functions/modules, added as needed
-- `tests/`: automated tests, added alongside implementation
-- `reports/`: reproducible analysis reports
-- `docs/`: data definitions and decision records, populated progressively
+**Check the results:** compare the source SHA-256 checksums displayed in A01 with those in `reports/eda/eda0_checkpoint_A.md`, run `python -m pytest -q`, and verify **all notebook cells execute in order without errors**, with saved outputs matching freshly calculated results.
 
-The target architecture may expand incrementally as tasks are approved. Use paths relative to the repository root when running notebooks.
+The dependencies are declared in `pyproject.toml`; use the local venv so they do not conflict with your system Python. The review environment could not install packages into an isolated `.venv` because the package index was inaccessible; it ran with the preinstalled Python 3.13 libraries. **Local venv installation and actual Jupyter clean-kernel execution remain acceptance checks (V7 OPEN; see `reports/eda/eda0_checkpoint_A.md`).** All code cells were nevertheless executed sequentially in a new Python process with genuine captured outputs and zero exceptions; this is not equivalent to a validated Jupyter kernel.
 
-## Governance
+## Project layout
 
-Metric definitions require approval before implementation. Technical integrity checks may precede metric definitions. Changes must be reviewed before commit; pull requests and merges require explicit authorization.
+- `data/raw/`: three **immutable, unversioned** original CSVs.
+- `data/processed/`, `data/analytical/`: reserved for approved derived datasets; **unused** in Checkpoint A.
+- `notebooks/00_data_foundation/00_A_structure.ipynb`: A01–A08, with code, tables, reconciliations, outputs and limitations.
+- `src/foundation_a.py`: small, reusable, synthetic-testable file loading and guarded-join utilities.
+- `tests/test_foundation_a.py`: ten synthetic tests; no Turno records.
+- `docs/data_dictionary.md`: documented-vs-observed schema; each field's meaning originates from the four-page assignment PDF.
+- `reports/eda/eda0_checkpoint_A.md`: principal technical checkpoint and review notes.
+- `reports/eda/eda0_anomalies_A.md`: anomaly and limitation inventory.
+- `reports/eda/eda0_coverage.md`: question coverage and acceptance status.
+
+**Governance:** Data corrections, new business metrics, eligible populations, interpretations and decisions require separate approval. No source file is edited or excluded. Results about `payment_logs` refer to **attempts**, not completed project payment outcomes. **Commit A was explicitly authorized on the review branch; no pull request or merge is authorized yet.**
