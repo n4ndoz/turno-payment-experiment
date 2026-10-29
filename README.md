@@ -1,6 +1,6 @@
 # Turno — Payment Authorization Experiment
 
-**Status:** EDA 0 / **Checkpoint A (A01–A08)** committed on `analysis/eda0-data-foundation`; **Checkpoint B (B09–B17)** committed to the Foundation branch with Fernando's approval for technical review; **not yet signed off as analytically complete**. Checkpoints C and E are committed on the Foundation branch for review, including C21/C24 and C22 traceability corrections; Checkpoint D (D25–D34) was committed on the Foundation branch after explicit approval; technical review and methodological decisions remain separate. **V7 remains open for A and B.** No experiment-effect inference, KPI definition or Ship/Kill recommendation is included.
+**Status:** EDA 0 / **Checkpoint A (A01–A08)** committed on `analysis/eda0-data-foundation`; **Checkpoint B (B09–B17)** committed to the Foundation branch with Fernando's approval for technical review; **not yet signed off as analytically complete**. Checkpoints C and E are committed on the Foundation branch for review, including C21/C24 and C22 traceability corrections; Checkpoint D (D25–D34) was committed on the Foundation branch after explicit approval; technical review and methodological decisions remain separate. **V7 remains open for A and B.** Sprint 1 experimental contrasts have been committed to the Foundation branch for review after explicit authorization; no final KPI approval or Ship/Kill recommendation is included.
 
 ## Python version and local reproducibility
 
@@ -69,7 +69,7 @@ The dependencies are declared in `pyproject.toml`; use the local venv so they do
 
 **Validation:** 36 synthetic tests passed across A/B/C/E. Revised Checkpoint C (10 code cells) and E (10 code cells) successfully executed with `nbclient` from a **clean Python 3.13.5 Jupyter kernel** in the authoring environment; outputs were saved. The user-local Python 3.13 `.venv` remains to be tested; earlier A/B V7 kernel errors remain unresolved.
 
-**Git:** Checkpoints C, D and E were expressly authorized for commit on the Foundation branch. Neither a pull request nor a merge is authorized. Experimental evaluation remains out of scope.
+**Git:** Checkpoints C, D and E were expressly authorized for commit on the Foundation branch. Neither a pull request nor a merge is authorized. Sprint 1 experimental analysis was authorized for commit on the Foundation branch; no PR or merge is authorized.
 
 
 ## Checkpoint D (committed for technical review)
@@ -80,4 +80,17 @@ The dependencies are declared in `pyproject.toml`; use the local venv so they do
 - `tests/check_d_source_reconciliations.py`: independent source-stream verification using standard-library `csv.DictReader` (no Pandas or shared helpers). Run `python tests/check_d_source_reconciliations.py`.
 - `reports/eda/eda0_checkpoint_D.md`, `eda0_anomalies_D.md`: complete English technical evidence and caveats; `eda0_coverage_combined.md` is updated for all 43 questions.
 
-**Validation:** 52 synthetic pytest cases passed across A/B/C/E/D; 11/11 D notebook code cells passed in a fresh Python 3.13.5 Jupyter kernel via `nbclient` after vectorizing performance bottlenecks, with outputs saved. Independent D source audit passed. Historical A/B V7 exceptions and local-user `.venv` verification remain open. Commit D was explicitly authorized; no PR, merge or experimental analysis is authorized.
+**Validation:** 52 synthetic pytest cases passed across A/B/C/E/D; 11/11 D notebook code cells passed in a fresh Python 3.13.5 Jupyter kernel via `nbclient` after vectorizing performance bottlenecks, with outputs saved. Independent D source audit passed. Historical A/B V7 exceptions and local-user `.venv` verification remain open. Commit D was explicitly authorized; the separate Sprint 1 analysis was later authorized and committed. No PR or merge is authorized.
+
+
+## Sprint 1 — Experimental Impact (committed for review)
+
+- `notebooks/01_experiment/experiment_impact.ipynb`: six registered-host candidate metrics, 2,000 host-stratified bootstrap CIs, D1/D7/D14/D30 capture timing, S1–S4 sensitivities, two decision-relevant charts, and saved outputs.
+- `reports/experiment_impact.md`: English executive results table, payment reliability, host behavior, robustness, eight original case questions, and decision evidence without a Ship/Kill recommendation.
+- `src/experiment_impact.py`: reusable validated project/host panels, elapsed capture windows, host-clustered bootstrap and baseline HC3 adjustment. Does not modify the approved foundation.
+- `tests/test_experiment_impact.py`: synthetic endpoint, no-log, zero-host, bootstrap, source-key and baseline-robustness tests.
+- `tests/check_experiment_source_reconciliations.py`: independent standard-library source audit.
+
+**Additional dependencies:** `statsmodels`, `scipy`, and `matplotlib` are declared in `pyproject.toml` for inference and the two plots. The main inference is on **registered hosts**, not proven full-population ITT; captured-at timestamps are not ledger settlement verification. The all-host D14 window is inside the conservatively documented observation horizon, but the completeness of source logs cannot be proven independently. D30 excludes final-day uncertain windows.
+
+**Sprint 1 validation:** 65/65 project pytest checks passed, independent CSV audit passed, and the Sprint notebook executed 11/11 code cells in a clean Jupyter Python 3.13.5 kernel with saved outputs. Historical A/B V7 issues remain separate; local `.venv` validation is still required. **Sprint 1 was committed after explicit authorization to the Foundation branch; no PR or merge has been performed.**
