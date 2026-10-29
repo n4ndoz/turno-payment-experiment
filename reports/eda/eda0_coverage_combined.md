@@ -1,6 +1,6 @@
 # EDA 0 — Consolidated question coverage (technical only)
 
-**Status:** A/B/C/E committed on the Foundation branch for review, with C traceability corrections included; D not started. A/B local clean-kernel V7 is unresolved. C/E passed authoring-environment clean-kernel runs; local user venv pending.
+**Status:** A/B/C/E committed on the Foundation branch for review, with C traceability corrections included; D committed on the Foundation branch for technical review. A/B local clean-kernel V7 is unresolved. C/E passed authoring-environment clean-kernel runs; local user venv pending.
 
 | ID | Notebook | Verification reference | Technical status / pending |
 |---|---|---|---|
@@ -28,16 +28,16 @@
 | C22 | `notebooks/00_data_foundation/02_C_temporal_integrity.ipynb` §C22 | C notebook + elapsed horizons / independent CSV | Answered or partly answerable; C V7 passed here |
 | C23 | `notebooks/00_data_foundation/02_C_temporal_integrity.ipynb` §C23 | C notebook + elapsed horizons / independent CSV | Answered or partly answerable; C V7 passed here |
 | C24 | `notebooks/00_data_foundation/02_C_temporal_integrity.ipynb` §C24 | C notebook + elapsed horizons / independent CSV | Answered or partly answerable; C V7 passed here |
-| D25 | Not created | Not implemented | Not started; not authorized |
-| D26 | Not created | Not implemented | Not started; not authorized |
-| D27 | Not created | Not implemented | Not started; not authorized |
-| D28 | Not created | Not implemented | Not started; not authorized |
-| D29 | Not created | Not implemented | Not started; not authorized |
-| D30 | Not created | Not implemented | Not started; not authorized |
-| D31 | Not created | Not implemented | Not started; not authorized |
-| D32 | Not created | Not implemented | Not started; not authorized |
-| D33 | Not created | Not implemented | Not started; not authorized |
-| D34 | Not created | Not implemented | Not started; not authorized |
+| D25 | `notebooks/00_data_foundation/03_D_payment_journeys.ipynb` §D25 | D report + saved outputs + 52 pytest cases + independent raw CSV audit | Observed technical evidence answered; D V7 PASS in authoring Jupyter; review pending |
+| D26 | `notebooks/00_data_foundation/03_D_payment_journeys.ipynb` §D26 | D report + saved outputs + 52 pytest cases + independent raw CSV audit | Observed technical evidence answered; D V7 PASS in authoring Jupyter; review pending |
+| D27 | `notebooks/00_data_foundation/03_D_payment_journeys.ipynb` §D27 | D report + saved outputs + 52 pytest cases + independent raw CSV audit | Partially answerable; actual financial operations unavailable; D V7 PASS in authoring Jupyter; review pending |
+| D28 | `notebooks/00_data_foundation/03_D_payment_journeys.ipynb` §D28 | D report + saved outputs + 52 pytest cases + independent raw CSV audit | Observed technical evidence answered; D V7 PASS in authoring Jupyter; review pending |
+| D29 | `notebooks/00_data_foundation/03_D_payment_journeys.ipynb` §D29 | D report + saved outputs + 52 pytest cases + independent raw CSV audit | Observed technical evidence answered; D V7 PASS in authoring Jupyter; review pending |
+| D30 | `notebooks/00_data_foundation/03_D_payment_journeys.ipynb` §D30 | D report + saved outputs + 52 pytest cases + independent raw CSV audit | Observed technical evidence answered; D V7 PASS in authoring Jupyter; review pending |
+| D31 | `notebooks/00_data_foundation/03_D_payment_journeys.ipynb` §D31 | D report + saved outputs + 52 pytest cases + independent raw CSV audit | Partially answerable; actual financial operations unavailable; D V7 PASS in authoring Jupyter; review pending |
+| D32 | `notebooks/00_data_foundation/03_D_payment_journeys.ipynb` §D32 | D report + saved outputs + 52 pytest cases + independent raw CSV audit | Partially answerable; actual financial operations unavailable; D V7 PASS in authoring Jupyter; review pending |
+| D33 | `notebooks/00_data_foundation/03_D_payment_journeys.ipynb` §D33 | D report + saved outputs + 52 pytest cases + independent raw CSV audit | Partially answerable; actual financial operations unavailable; D V7 PASS in authoring Jupyter; review pending |
+| D34 | `notebooks/00_data_foundation/03_D_payment_journeys.ipynb` §D34 | D report + saved outputs + 52 pytest cases + independent raw CSV audit | Partially answerable; actual financial operations unavailable; D V7 PASS in authoring Jupyter; review pending |
 | E35 | `notebooks/00_data_foundation/04_E_population_coverage.ipynb` §E35 | E notebook + host partitions / independent CSV | Answered or partly answerable; E V7 passed here |
 | E36 | `notebooks/00_data_foundation/04_E_population_coverage.ipynb` §E36 | E notebook + host partitions / independent CSV | Answered or partly answerable; E V7 passed here |
 | E37 | `notebooks/00_data_foundation/04_E_population_coverage.ipynb` §E37 | E notebook + host partitions / independent CSV | Answered or partly answerable; E V7 passed here |
@@ -48,4 +48,4 @@
 | E42 | `notebooks/00_data_foundation/04_E_population_coverage.ipynb` §E42 | E notebook + host partitions / independent CSV | Answered or partly answerable; E V7 passed here |
 | E43 | `notebooks/00_data_foundation/04_E_population_coverage.ipynb` §E43 | E notebook + host partitions / independent CSV | Answered or partly answerable; E V7 passed here |
 
-**Do not interpret “answered” as an approved KPI, causal estimand or full payment settlement.** A/B question-specific limitations are detailed in their original coverage reports; C/E details are in `eda0_checkpoint_C.md` and `eda0_checkpoint_E.md`. The missing D25–D34 notebook is intentional.
+**Do not interpret “answered” as an approved KPI, causal estimand or full payment settlement.** A/B question-specific limitations are detailed in their original coverage reports; C/E details are in `eda0_checkpoint_C.md` and `eda0_checkpoint_E.md`. D25–D34 notebook and report were committed after explicit authorization; no KPI decision is authorized.
